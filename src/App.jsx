@@ -10,7 +10,7 @@ function App() {
 
   // Fetch employees from JSON server
   useEffect(() => {
-    axios.get('http://localhost:5000/employees')
+    axios.get('http://localhost:3000/employees')
       .then((response) => {
         setEmployees(response.data);
       })
@@ -21,13 +21,13 @@ function App() {
 
   // Add a new employee
   const addEmployee = (employee) => {
-   
+
     if (employees.some(emp => emp.id === employee.id)) {
       alert('An employee with this ID already exists. Please choose a different ID.');
       return;
     }
 
-    axios.post('http://localhost:5000/employees', employee)
+    axios.post('http://localhost:3000/employees', employee)
       .then((response) => {
         setEmployees([...employees, response.data]);
       })
@@ -38,7 +38,7 @@ function App() {
 
   // Update an employee
   const updateEmployee = (updatedEmployee) => {
-    axios.put(`http://localhost:5000/employees/${updatedEmployee.id}`, updatedEmployee)
+    axios.put(`http://localhost:3000/employees/${updatedEmployee.id}`, updatedEmployee)
       .then(() => {
         setEmployees(employees.map((emp) => (emp.id === updatedEmployee.id ? updatedEmployee : emp)));
       })
@@ -49,7 +49,7 @@ function App() {
 
   // Delete an employee
   const deleteEmployee = (id) => {
-    axios.delete(`http://localhost:5000/employees/${id}`)
+    axios.delete(`http://localhost:3000/employees/${id}`)
       .then(() => {
         setEmployees(employees.filter((emp) => emp.id !== id));
       })
@@ -66,16 +66,16 @@ function App() {
   return (
     <div className="App">
       <h1>Employee Management</h1>
-      <EmployeeForm 
-        addEmployee={addEmployee} 
-        updateEmployee={updateEmployee} 
-        editingEmployee={editingEmployee} 
-        setEditingEmployee={setEditingEmployee} 
+      <EmployeeForm
+        addEmployee={addEmployee}
+        updateEmployee={updateEmployee}
+        editingEmployee={editingEmployee}
+        setEditingEmployee={setEditingEmployee}
       />
-      <EmployeeList 
-        employees={employees} 
-        deleteEmployee={deleteEmployee} 
-        editEmployee={editEmployee} 
+      <EmployeeList
+        employees={employees}
+        deleteEmployee={deleteEmployee}
+        editEmployee={editEmployee}
       />
     </div>
   );
