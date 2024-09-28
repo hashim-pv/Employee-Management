@@ -10,7 +10,7 @@ function App() {
 
   // Fetch employees from JSON server
   useEffect(() => {
-    axios.get('http://localhost:3000/employees')
+    axios.get('https://empserver-smwn.onrender.com/employees')
       .then((response) => {
         setEmployees(response.data);
       })
@@ -27,7 +27,7 @@ function App() {
       return;
     }
 
-    axios.post('http://localhost:3000/employees', employee)
+    axios.post('https://empserver-smwn.onrender.com/employees', employee)
       .then((response) => {
         setEmployees([...employees, response.data]);
       })
@@ -38,7 +38,7 @@ function App() {
 
   // Update an employee
   const updateEmployee = (updatedEmployee) => {
-    axios.put(`http://localhost:3000/employees/${updatedEmployee.id}`, updatedEmployee)
+    axios.put(`https://empserver-smwn.onrender.com/employees/${updatedEmployee.id}`, updatedEmployee)
       .then(() => {
         setEmployees(employees.map((emp) => (emp.id === updatedEmployee.id ? updatedEmployee : emp)));
       })
@@ -49,7 +49,7 @@ function App() {
 
   // Delete an employee
   const deleteEmployee = (id) => {
-    axios.delete(`http://localhost:3000/employees/${id}`)
+    axios.delete(`https://empserver-smwn.onrender.com/employees/${id}`)
       .then(() => {
         setEmployees(employees.filter((emp) => emp.id !== id));
       })
